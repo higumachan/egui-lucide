@@ -51,16 +51,18 @@ fn main() -> eframe::Result<()> {
             });
         });
         egui::CentralPanel::default().show(ctx, |ui| {
-            Icon::activity()
-                .size(app.icon_size)
-                .color(&app.color)
-                .stroke_width(app.stroke_width)
-                .ui(ui);
-            Icon::lock()
-                .size(app.icon_size)
-                .color(&app.color)
-                .stroke_width(app.stroke_width)
-                .ui(ui);
+            ui.horizontal(|ui| {
+                Icon::activity()
+                    .size(app.icon_size)
+                    .color(&app.color)
+                    .stroke_width(app.stroke_width)
+                    .ui(ui);
+                Icon::lock()
+                    .size(app.icon_size)
+                    .color(&app.color)
+                    .stroke_width(app.stroke_width)
+                    .ui(ui);
+            });
         });
     })
 }
