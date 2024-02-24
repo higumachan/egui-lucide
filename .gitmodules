@@ -1,0 +1,3 @@
+[submodule "crates/lucide-rs/lucide"]
+	path = crates/lucide-rs/lucide
+	url = git@github.com:lucide-icons/lucide.git
