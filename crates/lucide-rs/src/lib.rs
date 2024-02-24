@@ -1,13 +1,17 @@
+use std::fmt::Display;
+
 pub struct Icon {
+    pub name: &'static str,
     icon_path: &'static str,
-    size: u32,
-    color: Color,
-    stroke_width: u32,
+    pub size: u32,
+    pub color: Color,
+    pub stroke_width: u32,
 }
 
 impl Default for Icon {
     fn default() -> Self {
         Icon {
+            name: "",
             icon_path: "",
             size: 24,
             color: Color {
@@ -24,11 +28,12 @@ impl Icon {
     pub fn svg(&self) -> String {
         let mut content = String::new();
         content.push_str(&format!(
-            "<svg width=\"{0}\" height=\"{0}\" viewBox=\"0 0 {0} {0}\" fill=\"none\" stroke = \"rgb({1}, {2}, {3})\" stroke-linecap=\"round\" stroke-linejoin=\"round\"  xmlns=\"http://www.w3.org/2000/svg\">",
+            r##"<svg width="{0}" height="{0}" viewBox="0 0 24 24" fill="none" stroke = "rgb({1}, {2}, {3})" stroke-width="{4}" stroke-linecap="round" stroke-linejoin="round"  xmlns="http://www.w3.org/2000/svg">"##,
             self.size,
             self.color.red,
             self.color.green,
-            self.color.blue
+            self.color.blue,
+            self.stroke_width,
         ));
         content.push_str(self.icon_path);
         content.push_str("</svg>");
@@ -51,13 +56,24 @@ impl Icon {
     }
 }
 
+#[derive(Debug, Clone, Copy)]
 pub struct Color {
-    red: u8,
-    green: u8,
-    blue: u8,
+    pub red: u8,
+    pub green: u8,
+    pub blue: u8,
+}
+
+impl Display for Color {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "#{:02X}{:02X}{:02X}", self.red, self.green, self.blue)
+    }
 }
 
 impl Color {
+    pub fn new(red: u8, green: u8, blue: u8) -> Self {
+        Color { red, green, blue }
+    }
+
     pub fn red() -> Self {
         Color {
             red: 255,

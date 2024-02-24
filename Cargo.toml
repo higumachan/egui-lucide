@@ -9,3 +9,8 @@ members = [
 version = "0.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
+
+[workspace.dependencies]
+lucide-rs = { path = "crates/lucide-rs" }
+egui-lucide = { path = "crates/egui-lucide" }
+build-lucide-collect = { path = "crates/build-lucide-collect" }

@@ -7,4 +7,14 @@ edition.workspace = true
 
 [dependencies]
 egui = ">=0.25"
-egui_extras = ">=0.25"
+lucide-rs.workspace = true
+env_logger = "0.11.2"
+convert_case = "0.6.0"
+quick-xml = "0.31.0"
+
+[dev-dependencies]
+egui_extras = {  version = "0.26.2", features = [ "svg" ] }
+eframe = "0.26.2"
+
+[build-dependencies]
+build-lucide-collect.workspace = true
